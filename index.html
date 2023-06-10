@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>自我介绍</title>
+		<link rel="stylesheet" href="css/zwjs.css" />
+	</head>
+	<body>
+		
+		<div class="jieshao">
+			<div class="header" >
+				
+				<div style="display:flex;justify-content:space-between">
+					<canvas id="canvas_1" width="120" height="120"></canvas>
+					<div style="line-height:120px;font-size: 60px;">欢迎光临</div>
+
+
+					<canvas id="canvas_2" width="120" height="120"></canvas>
+
+				</div>
+				<img src="images/banner.jpg" width="980px" height="260px"/>
+			</div>
+			<div class="nav">
+				<ul>
+					<a href="index.html">
+						<li>
+							<p>Home</p>
+						</li>
+					</a>
+					<a href="ouxiang.html">
+						<li>
+							<p>Miku</p>
+						</li>
+					</a>
+					<!-- <a href="jiaxiang.html">
+						<li>
+							<p>我的家乡</p>
+						</li>
+					</a> --> 
+					<a href="xuexiao.html">
+						<li>
+							<p>University</p>
+						</li>
+					</a>
+					<a href="dianying.html">
+						<li>
+							<p>Movie</p>
+						</li>
+					</a>
+					<!-- <a href="meishi.html">
+						<li>
+							<p>Food</p>
+						</li>
+					</a> --> 
+					<!-- <a href="lvyou.html">
+						<li>
+							<p>喜欢旅游</p>
+						</li>
+					</a> -->
+					<a href="login.html">
+						<li>
+							<p>Login</p>
+						</li>
+					</a>
+					<a href="zhuce.html">
+						<li>
+							<p>Register</p>
+						</li>
+					</a>
+					<a href="userInfo.html">
+						<li>
+							<p>Members</p>
+						</li>
+					</a>
+				</ul>
+			</div>
+			<section>
+				<div class="shaoxiact">
+					<div class="sxbt">
+						<h2>个人介绍</h2>
+					</div>
+					<div class="geren">
+						<div class="gerenleft">
+							<img src="images/tou.jpg" />
+							<!-- style="position: absolute;top: 530px;left: 945px;" -->
+						</div>
+						<div class="gerenright">
+							<h3>个人信息</h3>
+							<p>姓名:鲍欣楠</p>
+							<p>别名:Karma</p>
+							<p>班级:人工三班</p>
+							<p>学院:信智学院</p>
+							<p>生日:2003.12</p>
+							<p>地区:浙江</p>
+						</div>
+						<div class="gerenright1">
+							<h3>个人简介</h3>
+							<p>我的名字是鲍欣楠，从宁波市效实中学毕业。小时候生活在外婆的身边，在一个靠海的小镇，很多事情已经不太清晰，记忆里有的是外婆熬的咸肉粥。后来在宁波上学，或许是走得不够远、不够久吧，到现在其实也一直没把宁波这座城市当成家乡，心里的乡土仍然是外婆的那座小房。在近十二年的学习过程中，让我产生学习动力的是对未知强烈的探求欲。新事物让我感到新鲜感而迈出第一步，而接触它们的过程中所遇到坎坷，则是我想要继续走下去的缘由。如巴尔蒙特所写，“怎样比霞光更亮……燃烧！”，希望自己不要放弃燃烧，不要放弃发光。
+							</p>
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+					<div class="aihao">
+						<div class="sxbt">
+							<h2>个人爱好</h2>
+						</div>
+						<ul>
+							<li><img src="images/ai1.jpeg" /><p>阅读</p></li>
+							<li><img src="images/ai1.jpg" /><p>电影</p> </li>
+							<li><img src="images/ai2.jpg" /><p>猫咪</p> </li>
+							<li><img src="images/ai3.png" /><p>音乐</p> </li>
+						</ul>
+						<audio autoplay="autoplay" loop="loop" preload="auto" src="images/BGM.mp3">
+						</audio>					
+						<div style="clear: both;"></div>
+					</div>
+				</div>
+			</section>
+			<footer>
+				<p>浙江财经大学</p>
+				<p>姓名：鲍欣楠&nbsp;&nbsp;&nbsp;&nbsp;学号：220110900501</p>
+			</footer>
+		</div>
+	</body>
+</html>
+
+<script>
+	function genStar(elemeentId)
+	{
+		var canvas = document.getElementById(elemeentId);
+        var context = canvas.getContext("2d");
+		var startRa = 0;
+		var R = 50;
+		var r = 20;
+		context.translate(50,50); 
+
+        // 逆时针计算五角星外围10个点的坐标
+        for(let i = 0; i < 5; i++){
+            // 外围凸出的每个点坐标
+            x = Math.cos((startRa + 18 + 72*i) / 180 * Math.PI) * R
+            y = - Math.sin((startRa + 18 + 72*i) / 180 * Math.PI) * R 
+            context.lineTo(x, y)
+            // 外围凹下去的每个点坐标
+            x = Math.cos((startRa + 54 + 72*i) / 180 * Math.PI) * r
+            y = - Math.sin((startRa + 54 + 72*i) / 180 * Math.PI) * r 
+            context.lineTo(x, y)
+        }
+        context.closePath()
+        context.fillStyle = 'white'
+        context.strokeStyle = 'black'
+        context.lineWidth = 3
+        context.stroke()
+        context.fill()
+        context.restore()
+	}
+    window.onload = ()=>{
+        genStar('canvas_1');
+        genStar('canvas_2');
+    }
+</script>

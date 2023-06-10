@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>自我介绍</title>
+		<link rel="stylesheet" href="css/zwjs.css" />
+	</head>
+	<body>
+		<div class="jieshao">
+			<div class="header">
+				<img src="images/banner.jpg" width="980px" height="260px"/>
+			</div>
+			<div class="nav">
+				<ul>
+					<a href="index.html">
+						<li>
+							<p>Home</p>
+						</li>
+					</a>
+					<a href="ouxiang.html">
+						<li>
+							<p>Miku</p>
+						</li>
+					</a>
+					<!-- <a href="jiaxiang.html">
+						<li>
+							<p>我的家乡</p>
+						</li>
+					</a> -->
+					<a href="xuexiao.html">
+						<li>
+							<p>University</p>
+						</li>
+					</a>
+					<a href="dianying.html">
+						<li>
+							<p>Movie</p>
+						</li>
+					</a>
+					<!-- <a href="meishi.html">
+						<li>
+							<p>Food</p>
+						</li>
+					</a> -->
+					<!-- <a href="lvyou.html">
+						<li>
+							<p>喜欢旅游</p>
+						</li>
+					</a> -->
+					<a href="login.html">
+						<li>
+							<p>Login</p>
+						</li>
+					</a>
+					<a href="zhuce.html">
+						<li>
+							<p>Register</p>
+						</li>
+					</a>
+					<a href="userInfo.html">
+						<li>
+							<p>Members</p>
+						</li>
+					</a>
+				</ul>
+			</div>
+			<section>
+				<div class="denglu">
+					<div class="login">
+						<div class="loginleft">
+							<img style="padding-top: 58px;" src="images/zhuce.jpg" />
+						</div>
+						<div class="loginright">
+							<h2>Register</h2>
+							<form>
+								<input type="text" placeholder="请输入账号" id="username" /></br>
+								<input type="text" placeholder="请输邮箱号" id="email" /></br>
+								<input type="text" placeholder="请输手机号" id="phone" /></br>
+								<input type="password" placeholder="请输入密码(至少8位)" id="passwd" /></br>
+								<input style="width: 130px;height: 35px;padding: 0;" type="button" onclick="registerFun()" value="Register" />
+								<a href="login.html"><input style="width: 130px;height: 35px;padding: 0;" type="button"
+										value="Login" /></a>
+							</form>
+							
+							<div class="loginf">
+								<!-- <a href="zhuce.html">
+									<p style="float: left;">Register账号</p>
+								</a> -->
+								<!-- <a href="login.html">
+									<p style="float: right;">Login</p>
+								</a> -->
+								<div style="clear: both;"></div>
+							</div>
+						</div>
+						<div style="clear: both;"></div>
+					</div>
+				</div>
+			</section>
+			<footer>
+				<p>浙江财经大学</p>
+				<p>姓名：鲍欣楠&nbsp;&nbsp;&nbsp;&nbsp;学号：220110900501</p>
+			</footer>
+		</div>
+	</body>
+</html>
+<script>
+
+	function registerFun() {
+		var username = document.getElementById('username').value
+		var email = document.getElementById('email').value
+		var phone = document.getElementById('phone').value
+		var passwd = document.getElementById('passwd').value
+
+		if (username.length===0 || email.length===0 || phone.length===0 || passwd.length===0)
+		{
+			alert('请填写所有项目!');
+			return
+		}
+		if (username.length < 3 || username.length > 16)
+		{
+			alert('用户名长度不符合')
+			return
+		}
+		if (passwd.length < 8 || passwd.length>32)
+		{
+			alert('密码长度不符合')
+			return
+		}
+		var total_user_list = []
+		try{
+			total_user_list = JSON.parse(localStorage.getItem('user_list'))
+		} catch{}
+		total_user_list = total_user_list?total_user_list:[]
+		for (var i=0;i<total_user_list.length;i++)
+		{
+			if (total_user_list[i].username === username)
+			{
+				alert('用户名已被注册');
+				return
+			}
+		}
+		
+		var new_user = {
+			username:username,
+			email:email,
+			phone:phone,
+			passwd:passwd
+		}
+		total_user_list.push(new_user);
+		localStorage.setItem('user_list',JSON.stringify(total_user_list))
+		alert('注册成功')
+	}
+</script>

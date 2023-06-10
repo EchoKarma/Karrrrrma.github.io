@@ -1,0 +1,148 @@
+<head>
+	<meta charset="utf-8">
+	<title>自我介绍</title>
+	<link rel="stylesheet" href="css/zwjs.css" />
+</head>
+
+<body>
+	<div class="jieshao">
+		<div class="header">
+			<img src="images/banner.jpg" width="980px" height="260px" />
+		</div>
+		<div class="nav">
+			<ul>
+				<a href="index.html">
+					<li>
+						<p>Home</p>
+					</li>
+				</a>
+				<a href="ouxiang.html">
+					<li>
+						<p>Miku</p>
+					</li>
+				</a>
+				<!-- <a href="jiaxiang.html">
+						<li>
+							<p>我的家乡</p>
+						</li>
+					</a> -->
+				<a href="xuexiao.html">
+					<li>
+						<p>University</p>
+					</li>
+				</a>
+				<a href="dianying.html">
+					<li>
+						<p>Movie</p>
+					</li>
+				</a>
+				<!-- <a href="meishi.html">
+						<li>
+							<p>Food</p>
+						</li>
+					</a> -->
+				<!-- <a href="lvyou.html">
+						<li>
+							<p>喜欢旅游</p>
+						</li>
+					</a> -->
+				<a href="login.html">
+					<li>
+						<p>Login</p>
+					</li>
+				</a>
+				<a href="zhuce.html">
+					<li>
+						<p>Register</p>
+					</li>
+				</a>
+				<a href="userInfo.html">
+					<li>
+						<p>Members</p>
+					</li>
+				</a>
+			</ul>
+		</div>
+		<section>
+			<div style="background-color: white;padding: 10px;">
+				<div id="user_info_box"></div>
+			</div>
+		</section>
+		<footer>
+			<p>浙江财经大学</p>
+			<p>姓名：鲍欣楠&nbsp;&nbsp;&nbsp;&nbsp;学号：220110900501</p>
+		</footer>
+	</div>
+</body>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2/dist/jquery.min.js"></script>
+<script>
+	var total_user_list = []
+	function readData()
+	{
+		var total_user_list_tmp = []
+		try {
+			total_user_list_tmp = JSON.parse(localStorage.getItem('user_list'))
+		} catch { }
+		total_user_list = total_user_list_tmp ? total_user_list_tmp : []
+	}
+	function writeData()
+	{
+		localStorage.setItem('user_list',JSON.stringify(total_user_list));
+	}
+	function delUser(idx) {
+		total_user_list.splice(idx,1);
+		updateUI();
+		writeData();5555555555
+	}
+	function updateUI() {
+		contain_box = $('#user_info_box')
+		contain_box.empty();
+		if (total_user_list.length === 0) {
+
+			contain_box.append('<p>无用户注册记录</p>')
+			return;
+		}
+		for (var i = 0; i < total_user_list.length; i++) {
+			var cur_user = total_user_list[i];
+			var tmp_text = `
+    <div class="user_cell">
+        <h3>第${i + 1}位勇者</h3>
+        <p>用户名：${cur_user.username}</p>
+        <p>邮箱：${cur_user.email}</p>
+        <p>手机：${cur_user.phone}</p>
+		<button class="delUserBtn" onclick="delUser(${i})">删除用户</button>
+    </div>`
+			contain_box.append(tmp_text)
+		}
+
+	}
+
+	window.onload = () => {readData(); updateUI() }
+
+</script>
+<style>
+	p {
+		margin: 0;
+		padding: 0;
+	}
+
+	.user_cell {
+		border-radius: 5px;
+		stroke: black;
+		stroke-width: 5px;
+		background-color: #6f8b86;
+		padding: 10px;
+		margin: 10px;
+	}
+
+	.delUserBtn {
+		background-color: #6f8b86;
+		padding: 5px;
+		border-radius: 5px;
+		cursor: pointer;
+
+	}
+</style>
